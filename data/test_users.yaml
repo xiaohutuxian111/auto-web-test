@@ -1,0 +1,406 @@
+users:
+  - username: superAdmin
+    password: admin123
+    department: dib_platform
+    roles:
+      - 测试员
+      - 测试组长
+    enabled: true
+
+  - username: testUser
+    password: admin123
+    department: dib_platform
+    roles:
+      - 测试审核
+    enabled: true
+
+  - username: jxgly01
+    password: 123456
+    department: dib_platform
+    roles:
+      - 绩效管理员
+    enabled: true
+
+  - username: Afzr
+    password: admin123
+    department: dib_platform
+    roles:
+      - 部门领导
+    enabled: true
+
+  - username: Bfzr
+    password: admin123
+    department: dib_platform
+    roles:
+      - 部门领导
+    enabled: true
+
+  - username: Cfzr
+    password: admin123
+    department: dib_platform
+    roles:
+      - 部门领导
+    enabled: true
+
+  - username: liyuxia
+    password: liyuxia
+    department: dib_platform
+    roles:
+      - 绩效管理员
+    enabled: true
+
+  - username: Atest1
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+
+  - username: Atest2
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest3
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest4
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest5
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest6
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest7
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest8
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest9
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest10
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest11
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest12
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest13
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest14
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest15
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest16
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest17
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest18
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest19
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest20
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest21
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest22
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest23
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest24
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest25
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest26
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest27
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest28
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest29
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest30
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest31
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest32
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest33
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest34
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest35
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest36
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest37
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest38
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest39
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest40
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest41
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest42
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest43
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest44
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest45
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest46
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest47
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest48
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest49
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+  - username: Atest50
+    password: 123456
+    department: dib_platform
+    roles:
+      - 测试人员
+    enabled: true
+
+
+
+
+

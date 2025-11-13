@@ -1,0 +1,108 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[dependency-groups]
+dev = [
+    "ruff==0.11.4",
+    "pre-commit==4.2.0"
+]
+
+[project]
+dependencies = [
+    "allure-pytest==2.13.5",
+    "asyncpg>=0.30.0",
+    "axe-playwright-python==0.1.4",
+    "docx>=0.2.4",
+    "faker>=37.3.0",
+    "jsonpath>=0.82.2",
+    "jsonpath-ng[ext]>=1.7.0",
+    "loguru>=0.7.3",
+    "moviepy>=2.2.1",
+    "openpyxl>=3.1.5",
+    "pandas>=2.3.0",
+    "pillow>=11.2.1",
+    "playwright==1.51.0",
+    "psycopg2>=2.9.10",
+    "pydantic-settings>=2.9.1",
+    "pymysql>=1.1.1",
+    "pytest==8.3.5",
+    "pytest-base-url==2.1.0",
+    "pytest-order>=1.3.0",
+    "pytest-playwright==0.7.0",
+    "pytest-rerunfailures>=15.1",
+    "pytest-split==0.10.0",
+    "pytest-xdist>=3.8.0",
+    "python-docx>=1.2.0",
+    "reportlab>=4.4.3",
+    "requests==2.32.3",
+    "requests-toolbelt>=1.0.0",
+    "sqlalchemy>=2.0.41",
+    "xlrd>=2.0.1",
+]
+description = "Playwright Python example project with pytest and Allure report"
+keywords = [
+    "playwright",
+    "automation",
+    "testing",
+    "web"
+]
+name = "auto-web-test"
+readme = "README.md"
+requires-python = "~=3.11"
+version = "0.1.0"
+
+[tool.hatch.build.targets.sdist]
+include = ["auto-web-test"]
+
+[tool.hatch.build.targets.wheel]
+include = ["auto-web-test"]
+
+[tool.isort]
+profile = "black"
+skip = ["env", "venv"]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--clean-alluredir",
+    "--alluredir=allure-results",
+    "--allure-link-pattern",
+    "issue:https://{}",
+    "--allure-link-pattern",
+    "link:https://{}",
+    "--allure-link-pattern",
+    "tms:https://{}",
+    "-ra",
+    "--color=yes",
+    "--browser=chromium",
+    "--headed",
+    "--video=retain-on-failure",
+    "--tracing=retain-on-failure"
+]
+base_url = 'https://www.saucedemo.com/'
+log_cli = true
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_level = "INFO"
+markers = [
+    "devRun: marks tests that run before merge to the main branch",
+]
+
+[tool.ruff]
+exclude = [".venv", "env"]
+ignore = [
+    "D203", # One blank line required before class docstring (conflicts with D211)
+    "D213", # Multi-line docstring summary should start at the second line
+    "COM812"
+]
+line-length = 100
+select = ["ALL"]
+target-version = "py311"
+
+[tool.ruff.format]
+docstring-code-format = true
+quote-style = "double"
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
