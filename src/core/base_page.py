@@ -38,7 +38,7 @@ class PageObject:
         self.page.wait_for_selector(f"text={text}", timeout=timeout, state=state)
 
     def set_设置当前用户为(
-        self, 显示用户名: str = None, 登录用户名: str = None, 登录部门: str = None, 登录密码: str = None
+            self, 显示用户名: str = None, 登录用户名: str = None, 登录部门: str = None, 登录密码: str = None
     ):
 
         from src.utils.global_map import GlobalMap
@@ -149,14 +149,14 @@ class PageObject:
 
     def search_填写搜索框(self, 关键字=None, LOV内搜索=False, placeholder=None, delay=0, **字段_值):
         with self.page.expect_response(
-            lambda response: (
-                quote(关键字) in response.request.url
-                or 关键字 in response.request.url
-                or 关键字 in str(response.request.post_data)
-                or quote(关键字) in str(response.request.post_data)
-            )
-            and response.status == 200,
-            timeout=120_000,
+                lambda response: (
+                                         quote(关键字) in response.request.url
+                                         or 关键字 in response.request.url
+                                         or 关键字 in str(response.request.post_data)
+                                         or quote(关键字) in str(response.request.post_data)
+                                 )
+                                 and response.status == 200,
+                timeout=120_000,
         ):
             self.locators.loading_加载动画().wait_for(state="detached")
             if placeholder:
@@ -549,10 +549,10 @@ class PageObject:
                         self.__input_搜索(值, nth, 包含操作元素的最上级div)
                         return
                 if (
-                    INPUT元素Type == "text"
-                    or INPUT元素Type is None
-                    or INPUT元素Type == "textarea"
-                    or INPUT元素最上级DIV.locator('//input[contains(@class,"input-number-input")]').count()
+                        INPUT元素Type == "text"
+                        or INPUT元素Type is None
+                        or INPUT元素Type == "textarea"
+                        or INPUT元素最上级DIV.locator('//input[contains(@class,"input-number-input")]').count()
                 ) and not 包含搜索按钮:
                     with allure.step("可直接填写的操作:"):
                         self.__input_直接填写(值, nth, 包含操作元素的最上级div)
@@ -1004,7 +1004,7 @@ class PageObject:
 
     @allure.step("填写表单文本框: {表单项名称} = {需要填写的文本}")
     def 表单_文本框填写(
-        self, 表单项名称: str, 需要填写的文本: str, 表单最上层定位: Locator = None, timeout: float = None
+            self, 表单项名称: str, 需要填写的文本: str, 表单最上层定位: Locator = None, timeout: float = None
     ):
         if 表单最上层定位:
             表单最上层定位.locator(self.locators.表单项中包含操作元素的最上级div(表单项名称)).locator(
@@ -1185,7 +1185,7 @@ class PageObject:
         return self.page.locator(locator).evaluate("node => node.tagName")
 
     def hover_加重试的hover(
-        self, hover对象: Locator, 下一步点击对象: Locator, 第一步动作="hover", 第二步动作="click", timeout=30_000
+            self, hover对象: Locator, 下一步点击对象: Locator, 第一步动作="hover", 第二步动作="click", timeout=30_000
     ):
         start = time.time()
         while True:
@@ -1455,12 +1455,12 @@ class PageObject:
         return 匹配行列表
 
     def upload_模板(
-        self,
-        info_data: List[Dict[str, str]],
-        upload_path: str,
-        sheet_name: str = "导入模板",
-        skip_row: int = 0,
-        selector: str = "input[type='file']",
+            self,
+            info_data: List[Dict[str, str]],
+            upload_path: str,
+            sheet_name: str = "导入模板",
+            skip_row: int = 0,
+            selector: str = "input[type='file']",
     ):
         """
         下载模板上传文件
@@ -1483,10 +1483,10 @@ class PageObject:
             raise f"文件:{file_path}上传失败: {str(e)}"
 
     def upload_random_file(
-        self,
-        file_path: str,
-        locator_index: int = 0,
-        file_type: Literal["docx", "txt", "bmp", "xlsx", "pdf", "jpg", "jpeg", "png"] = "pdf",
+            self,
+            file_path: str,
+            locator_index: int = 0,
+            file_type: Literal["docx", "txt", "bmp", "xlsx", "pdf", "jpg", "jpeg", "png"] = "pdf",
     ):
         """
         随机上传文件
