@@ -1,7 +1,7 @@
 from src.core import *
 
 from src.core.base_page import PageObject
-from src.core.table import Table
+from src.core.components.table import Table
 from src.utils import faker_随机数生成
 
 

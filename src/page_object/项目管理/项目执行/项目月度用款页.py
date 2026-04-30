@@ -1,7 +1,7 @@
 import random
 
 from src.core.base_page import PageObject
-from src.core.table import Table
+from src.core.components.table import Table
 
 
 class 项目月度用款页(PageObject):

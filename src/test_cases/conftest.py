@@ -16,7 +16,7 @@ import pytest
 from _pytest.python import Function
 from allure import step
 from filelock import FileLock
-from src.core.locators import *
+from src.core.components.locators import *
 
 from src.page_object.pageIns import PageInstance
 from playwright._impl._locator import Locator as LocatorImpl

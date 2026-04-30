@@ -1,6 +1,27 @@
-from src.core import *
-from src.core.locators import Locators
-from src.core.table import Table
+import datetime
+import json
+import os
+import random
+import re
+import time
+from typing import Dict, List, Literal, Optional, Union
+from urllib.parse import quote
+
+import allure
+import pytest
+from playwright.sync_api import Locator, Page, expect
+
+from src.core.actions.frontend import ComponentActions
+from src.core.components.frontend import FrontendComponent, component
+from src.core.components.locators import Locators
+from src.core.components.table import Table
+from src.data_models.auth_data import auth_data
+from src.utils.api_count import api_count
+from src.utils.excel_util import ExcelUtil
+from src.utils.file_util import generate_formatted_file
+from src.utils.log_util import logger
+from src.utils.path_util import get_path
+from src.utils.tools import get_token
 
 
 class PageObject:
@@ -9,6 +30,7 @@ class PageObject:
         self.url = ""
         self.api_headers = None
         self.locators = Locators(page)
+        self.actions = ComponentActions(self)
         self.组件类型 = "CANT"
 
     def navigate(self):
@@ -26,6 +48,14 @@ class PageObject:
 
     def table(self, 唯一文字, 表格序号=-1):
         return Table(self.page, 唯一文字, 表格序号=表格序号)
+
+    def component(self, name: str, **kwargs) -> FrontendComponent:
+        """
+        获取前端组件封装对象。
+
+        组件封装应通过 PageObject 使用，避免在用例中绕过页面对象直接操作组件。
+        """
+        return component(self.page, name, **kwargs)
 
     def close_tab(self, tab):
         self.page.click(f'[role=tab] div span:text("{tab}")', button="right")

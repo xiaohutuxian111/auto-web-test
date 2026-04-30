@@ -1,5 +1,7 @@
 # Web UI 自动化测试项目
 
+
+[参考地址](https://github.com/Aino1980/playwright0/tree/main)
 ## **项目描述**
 
 - 基于playwright 实现的自化测试项目,目标网址:[ARS经济运营管理系统](http://192.168.10.240:806/login)
@@ -50,6 +52,10 @@ auto-web-test/
 ├── scripts/               # CI、清理和辅助脚本
 ├── src/                   # 自动化测试源码
 │   ├── core/              # 核心页面能力
+│   │   ├── actions/       # 上传等页面动作能力
+│   │   ├── components/    # 定位器、表格等页面组件
+│   │   ├── assertions.py  # 断言辅助能力
+│   │   └── base_page.py   # 页面对象基类
 │   ├── data_models/       # 测试数据模型
 │   ├── interfaces/        # 接口辅助能力
 │   ├── page_object/       # 页面对象
@@ -64,10 +70,15 @@ auto-web-test/
 
 ### 1. 核心模块 (src/core/)
 
-- **locators.py**: 提供统一的元素定位方法
-- **table.py**: 封装表格相关的操作
 - **base_page.py**: 页面对象基类和通用页面动作
-- **upload_file.py**: 封装文件上传和下载功能
+- **assertions.py**: 断言辅助能力
+- **components/locators.py**: 提供统一的元素定位方法
+- **components/table.py**: 封装表格相关的操作
+- **components/frontend.py**: 对应前端 `src/components` 顶层组件的自动化组件对象封装
+- **actions/frontend.py**: 基于组件封装的 UI 自动化动作编排
+- **actions/upload_file.py**: 封装文件上传和下载功能
+
+`core` 的使用入口是 `PageObject`。页面对象中优先使用 `self.locators`、`self.table()`、`self.component()` 和 `self.actions`，避免测试用例绕过页面对象直接操作底层组件。
 
 ### 2. 页面对象 (src/page_object/)
 

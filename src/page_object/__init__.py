@@ -42,4 +42,4 @@ from src.utils.file_util import generate_formatted_file
 from src.utils.log_util import logger
 from src.utils.db_util import db_util
 from src.data_models.auth_data import auth_data
-from src.core.table import Table
+from src.core.components.table import Table

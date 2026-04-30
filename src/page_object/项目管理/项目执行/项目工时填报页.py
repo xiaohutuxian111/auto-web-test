@@ -1,5 +1,5 @@
 from src.core import *
-from src.core.table import Table
+from src.core.components.table import Table
 from src.core.base_page import PageObject
 
 

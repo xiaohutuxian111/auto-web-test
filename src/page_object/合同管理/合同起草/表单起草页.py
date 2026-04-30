@@ -1,5 +1,5 @@
 from src.core.base_page import PageObject
-from src.core.table import Table
+from src.core.components.table import Table
 
 
 class 表单起草_类(PageObject):
