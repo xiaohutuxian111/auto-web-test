@@ -157,13 +157,13 @@ auto-web-test/
 
    ```bash
    # 运行所有测试用例
-   pytest src/test_cases/ --alluredir=./allure-results
+   pytest src/tests/ --alluredir=./allure-results
    
    # 运行指定模块的测试用例
-   pytest src/test_cases/test_module/ --alluredir=./allure-results
+   pytest src/tests/test_module/ --alluredir=./allure-results
    
    # 运行指定测试用例
-   pytest src/test_cases/test_module/test_file.py --alluredir=./allure-results
+   pytest src/tests/test_module/test_file.py --alluredir=./allure-results
    ```
 
 ### 3. 查看报告：
