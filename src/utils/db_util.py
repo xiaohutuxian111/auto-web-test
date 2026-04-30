@@ -37,10 +37,10 @@ class DBUtil:
         self.engine = create_engine(
             self.database_url,
             echo=self.echo,
-            pool_size=5,
-            max_overflow=10,
-            pool_pre_ping=True,  # 连接前检查连接是否有效
-            pool_recycle=3600    # 连接回收时间（秒）
+            pool_size=settings.DB_POOL_SIZE,
+            max_overflow=settings.DB_MAX_OVERFLOW,
+            pool_pre_ping=settings.DB_POOL_PRE_PING,  # 连接前检查连接是否有效
+            pool_recycle=settings.DB_POOL_RECYCLE    # 连接回收时间（秒）
         )
         
         # 创建会话工厂

@@ -1,13 +1,32 @@
+"""项目常量与业务枚举。
+
+本文件只保存稳定常量，不保存环境配置、账号密码、URL 或运行时状态。
+为兼容现有用例，保留原有类名和枚举值。
+"""
+
 from enum import Enum
 
-class BrowserType(str, Enum):
+
+class LabelEnum(str, Enum):
+    """值为页面展示文本的枚举基类。"""
+
+    def __str__(self) -> str:
+        return self.value
+
+
+# =============================================================================
+# 框架与浏览器常量
+# =============================================================================
+
+
+class BrowserType(LabelEnum):
     CHROME = "chrome"
     FIREFOX = "firefox"
     EDGE = "edge"
     SAFARI = "safari"
 
 
-class WaitStrategy(str, Enum):
+class WaitStrategy(LabelEnum):
     PRESENCE = "presence"
     VISIBILITY = "visibility"
     CLICKABLE = "clickable"
@@ -15,6 +34,8 @@ class WaitStrategy(str, Enum):
 
 
 class Keys:
+    """Playwright/Selenium 风格键盘码。"""
+
     ENTER = "\ue007"
     TAB = "\ue004"
     ESCAPE = "\ue00c"
@@ -34,8 +55,9 @@ class Keys:
     ALT = "\ue00a"
 
 
-# 常用断言消息
 class AssertMessages:
+    """常用断言消息模板。"""
+
     ELEMENT_NOT_FOUND = "Element not found: {}"
     ELEMENT_NOT_VISIBLE = "Element not visible: {}"
     ELEMENT_NOT_CLICKABLE = "Element not clickable: {}"
@@ -45,8 +67,9 @@ class AssertMessages:
     TITLE_NOT_MATCH = "Title not match. Expected: {}, Actual: {}"
 
 
-# 常用操作等待时间（秒）
 class WaitTime:
+    """常用等待时间，单位：秒。"""
+
     PAGE_LOAD = 30
     ELEMENT_LOAD = 10
     AJAX_LOAD = 10
@@ -55,7 +78,11 @@ class WaitTime:
     TYPE = 1
 
 
-# 常用 HTTP 状态码
+# =============================================================================
+# 通用技术常量
+# =============================================================================
+
+
 class HttpStatus:
     OK = 200
     CREATED = 201
@@ -68,7 +95,6 @@ class HttpStatus:
     INTERNAL_SERVER_ERROR = 500
 
 
-# 常用正则表达式
 class Regex:
     EMAIL = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
     PHONE = r"^\+?1?\d{9,15}$"
@@ -78,7 +104,6 @@ class Regex:
     DATETIME = r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$"
 
 
-# 常用颜色代码
 class Colors:
     RED = "#FF0000"
     GREEN = "#00FF00"
@@ -88,7 +113,6 @@ class Colors:
     GRAY = "#808080"
 
 
-# 常用日期格式
 class DateFormat:
     STANDARD = "%Y-%m-%d"
     WITH_TIME = "%Y-%m-%d %H:%M:%S"
@@ -98,9 +122,6 @@ class DateFormat:
     TIMESTAMP = "%Y%m%d%H%M%S"
 
 
-# 常用文件大小单位
-
-
 class FileSize:
     KB = 1024
     MB = 1024 * KB
@@ -108,8 +129,9 @@ class FileSize:
     TB = 1024 * GB
 
 
-# 常用时间单位（秒）
 class TimeUnit:
+    """常用时间单位，单位：秒。"""
+
     SECOND = 1
     MINUTE = 60 * SECOND
     HOUR = 60 * MINUTE
@@ -119,8 +141,30 @@ class TimeUnit:
     YEAR = 365 * DAY
 
 
-class Degree(Enum):
-    """学位"""
+class FileType(LabelEnum):
+    PNG = ".png"
+    JPEG = ".jpeg"
+    BMP = ".bmp"
+    JPG = ".jpg"
+    TXT = ".txt"
+    XLSX = ".xlsx"
+    XLS = ".xls"
+    PPTX = ".pptx"
+    PDF = ".pdf"
+    RAR = ".rar"
+    AVI = ".avi"
+    RM = ".rm"
+    RMV = "rmvb"
+
+
+# =============================================================================
+# 业务枚举
+# =============================================================================
+
+
+class Degree(LabelEnum):
+    """学位。"""
+
     普通高中 = "普通高中"
     技工学校 = "技工学校"
     职业高中 = "职业高中"
@@ -133,8 +177,9 @@ class Degree(Enum):
     其他 = "其他"
 
 
-class Qualifications(Enum):
-    """学历"""
+class Qualifications(LabelEnum):
+    """学历。"""
+
     初中及以下 = "初中及以下"
     高中中专 = "高中、中专"
     大专本科 = "大专、本科"
@@ -142,8 +187,9 @@ class Qualifications(Enum):
     博士研究生 = "博士研究生"
 
 
-class Title(Enum):
-    """职称"""
+class Title(LabelEnum):
+    """职称。"""
+
     初级 = "初级"
     助理工程师 = "助理工程师"
     工程师 = "工程师"
@@ -160,38 +206,43 @@ class Title(Enum):
     其他 = "其他"
 
 
-class InvestigateType(Enum):
-    """研究类型"""
-    其他 = '其他'
-    临床研究 = '临床研究'
-    应用开发 = '应用开发'
-    应用基础研究 = '应用基础研究'
-    基础研究 = '应用基础研究'
+class InvestigateType(LabelEnum):
+    """研究类型。"""
+
+    其他 = "其他"
+    临床研究 = "临床研究"
+    应用开发 = "应用开发"
+    应用基础研究 = "应用基础研究"
+    基础研究 = "应用基础研究"
 
 
-class DeliverableType(Enum):
-    """成果物"""
-    奖励证书 = '奖励证书'
-    专著编书 = '专著编书'
-    专利成果 = '专利成果'
-    论文成果 = '论文成果'
-    其他成果 = '其他成果'
+class DeliverableType(LabelEnum):
+    """成果物类型。"""
+
+    奖励证书 = "奖励证书"
+    专著编书 = "专著编书"
+    专利成果 = "专利成果"
+    论文成果 = "论文成果"
+    其他成果 = "其他成果"
 
 
-
-
-
-class FileType(Enum):
-    PNG = ".png"
-    JPEG = ".jpeg"
-    BMP = ".bmp"
-    JPG = ".jpg"
-    TXT = ".txt"
-    XLSX = ".xlsx"
-    XLS = ".xls"
-    PPTX = ".pptx"
-    PDF = ".pdf"
-    RAR = ".rar"
-    AVI = ".avi"
-    RM = ".rm"
-    RMV = "rmvb"
+__all__ = [
+    "AssertMessages",
+    "BrowserType",
+    "Colors",
+    "DateFormat",
+    "Degree",
+    "DeliverableType",
+    "FileSize",
+    "FileType",
+    "HttpStatus",
+    "InvestigateType",
+    "Keys",
+    "LabelEnum",
+    "Qualifications",
+    "Regex",
+    "TimeUnit",
+    "Title",
+    "WaitStrategy",
+    "WaitTime",
+]

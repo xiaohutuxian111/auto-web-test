@@ -1,8 +1,9 @@
 from pathlib import Path
-from typing import Optional, Literal
-from urllib.parse import quote_plus
+from typing import Optional
 
 from pydantic_settings import BaseSettings
+
+from config.database import database_settings
 
 
 class Settings(BaseSettings):
@@ -14,32 +15,6 @@ class Settings(BaseSettings):
     # 路径配置
     BASE_DIR: Path = Path(__file__).resolve().parent.parent
     LOGS_DIR: Path = BASE_DIR / "logs"
-
-    # 数据库通用配置
-    DB_TYPE: Literal["mysql", "postgresql"] = "mysql"
-    DB_HOST: str = "localhost"
-    DB_PORT: int = 3306
-    DB_USER: str = "root"
-    DB_PASSWORD: str = "123456"
-    DB_NAME: str = "test_db"
-    DB_ECHO: bool = False
-    DB_POOL_SIZE: int = 5
-    DB_MAX_OVERFLOW: int = 10
-
-    # 通过拼接属性自动生成 SQLAlchemy URL
-    @property
-    def DATABASE_URL(self) -> str:
-        if self.DB_TYPE == "mysql":
-            return (
-                f"mysql+pymysql://{self.DB_USER}:{quote_plus(self.DB_PASSWORD)}"
-                f"@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
-            )
-        elif self.DB_TYPE == "postgresql":
-            return (
-                f"postgresql+psycopg2://{self.DB_USER}:{quote_plus(self.DB_PASSWORD)}"
-                f"@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
-            )
-        raise ValueError(f"Unsupported DB_TYPE: {self.DB_TYPE}")
 
     # 日志配置
     LOG_LEVEL: str = "INFO"
@@ -60,6 +35,55 @@ class Settings(BaseSettings):
     FEISHU_WEBHOOK_URL: str = ''
     FEISHU_APP_ID: str = ''
     FEISHU_APP_SECRET: str = ''
+
+    # 数据库配置兼容入口。新代码优先从 config.database 导入 database_settings。
+    @property
+    def DB_TYPE(self):
+        return database_settings.DB_TYPE
+
+    @property
+    def DB_HOST(self):
+        return database_settings.DB_HOST
+
+    @property
+    def DB_PORT(self):
+        return database_settings.DB_PORT
+
+    @property
+    def DB_USER(self):
+        return database_settings.DB_USER
+
+    @property
+    def DB_PASSWORD(self):
+        return database_settings.DB_PASSWORD
+
+    @property
+    def DB_NAME(self):
+        return database_settings.DB_NAME
+
+    @property
+    def DB_ECHO(self):
+        return database_settings.DB_ECHO
+
+    @property
+    def DB_POOL_SIZE(self):
+        return database_settings.DB_POOL_SIZE
+
+    @property
+    def DB_MAX_OVERFLOW(self):
+        return database_settings.DB_MAX_OVERFLOW
+
+    @property
+    def DB_POOL_RECYCLE(self):
+        return database_settings.DB_POOL_RECYCLE
+
+    @property
+    def DB_POOL_PRE_PING(self):
+        return database_settings.DB_POOL_PRE_PING
+
+    @property
+    def DATABASE_URL(self):
+        return database_settings.DATABASE_URL
 
     # Pydantic 配置
     model_config = {

@@ -33,55 +33,54 @@
 
 ```
 auto-web-test/
+├── .agents/               # Codex/Agent 项目技能与规则
+│   └── skills/
+├── .Auth/                 # 本地认证缓存，运行时生成
 ├── config/                 # 配置文件目录
+│   ├── auth/               # 登录认证用户配置
+│   │   └── test_users.yaml
+│   ├── constants.py       # 常量与枚举
+│   ├── database.py        # 数据库连接配置
 │   └── settings.py        # 项目配置
-├── core/                  # 核心功能模块
-│   ├── locators.py       # 元素定位器
-│   ├── form.py           # 表单操作
-│   ├── table.py          # 表格操作
-│   ├── search.py         # 搜索功能
-│   └── upload_file.py    # 文件上传功能
-├── data/                  # 测试数据目录
-│   └── test_users.yaml   # 测试用户数据
-├── pages/                 # 页面对象目录
-│   ├── base_page.py      # 基础页面类
-│   └── login_page.py     # 登录页面类
-├── test_cases/           # 测试用例目录
-├── utils/                # 工具类目录
-│   ├── date_uitl.py     # 日期工具
-│   ├── log_util.py      # 日志工具
-│   ├── path_util.py     # 路径工具
-│   ├── check_util.py    # 检查工具
-│   └── global_map.py    # 全局变量管理
-├── resources/            # 资源文件目录
-├── logs/                 # 日志文件目录
-├── pytest.ini           # pytest配置文件
-├── pyproject.toml       # 项目依赖配置
-└── README.md            # 项目说明文档
+├── docker/                # Docker 镜像与压测插件
+├── docs/                  # 项目设计文档与文档图片
+│   └── assets/            # README 和文档图片资源
+├── requirements/          # Python 依赖清单
+│   └── requirements.txt
+├── scripts/               # CI、清理和辅助脚本
+├── src/                   # 自动化测试源码
+│   ├── core/              # 核心页面能力
+│   ├── data_models/       # 测试数据模型
+│   ├── interfaces/        # 接口辅助能力
+│   ├── page_object/       # 页面对象
+│   ├── test_cases/        # 测试用例
+│   └── utils/             # 通用工具
+├── pytest.ini             # pytest 配置文件
+├── pyproject.toml         # 项目元数据
+└── README.md              # 项目说明文档
 ```
 
 ## 目录说明
 
-### 1. 核心模块 (core/)
+### 1. 核心模块 (src/core/)
 
 - **locators.py**: 提供统一的元素定位方法
-- **form.py**: 封装表单相关的操作
 - **table.py**: 封装表格相关的操作
-- **search.py**: 封装搜索相关的功能
+- **base_page.py**: 页面对象基类和通用页面动作
 - **upload_file.py**: 封装文件上传和下载功能
 
-### 2. 页面对象 (pages/)
+### 2. 页面对象 (src/page_object/)
 
-- **base_page.py**: 所有页面类的基类，提供通用方法
-- **login_page.py**: 登录页面类，继承自base_page
-- 其他页面类: 继承自base_page，实现具体页面的操作
+- **登录页.py**: 登录页面对象
+- **pageIns.py**: 页面对象实例入口
+- 其他页面类: 按业务模块分类，实现具体页面操作
 
-### 3. 测试数据 (data/)
+### 3. 测试数据与认证配置
 
-- **test_users.yaml**: 存储测试用户信息，包括用户名、密码等
-- 其他YAML文件: 存储不同模块的测试数据
+- **config/auth/test_users.yaml**: 存储登录认证用户信息，包括用户名、密码、租户和角色等
+- **src/data_models/**: 存储结构化测试数据模型
 
-### 4. 工具类 (utils/)
+### 4. 工具类 (src/utils/)
 
 - **date_uitl.py**: 日期处理工具
 - **log_util.py**: 日志记录工具
@@ -92,18 +91,20 @@ auto-web-test/
 ### 5. 配置文件 (config/)
 
 - **settings.py**: 项目配置信息，包括环境变量、URL等
+- **database.py**: 数据库连接配置，包括数据库类型、地址、连接池和 SQLAlchemy URL
+- **constants.py**: 常量和枚举定义
 
 ### 6. 测试用例 (test_cases/)
 
-存放所有测试用例文件，按模块分类组织
+存放在 **src/test_cases/**，按业务模块分类组织
 
-### 7. 资源文件 (resources/)
+### 7. 文档资源 (docs/assets/)
 
-存放测试所需的资源文件，如图片、文档等
+存放 README 和设计文档引用的图片资源
 
-### 8. 日志文件 (logs/)
+### 8. 依赖文件 (requirements/)
 
-存放测试执行过程中产生的日志文件
+存放 Python 依赖清单，Dockerfile 和本地安装命令共用同一路径
 
 ## 技术栈
 
@@ -135,7 +136,7 @@ auto-web-test/
    pip install uv
    
    # 安装项目依赖
-   uv pip install -r requirements.txt
+   uv pip install -r requirements/requirements.txt
    
    # 安装playwright浏览器
    playwright install
@@ -145,13 +146,13 @@ auto-web-test/
 
    ```bash
    # 运行所有测试用例
-   pytest test_cases/ --alluredir=./allure-results
+   pytest src/test_cases/ --alluredir=./allure-results
    
    # 运行指定模块的测试用例
-   pytest test_cases/test_module/ --alluredir=./allure-results
+   pytest src/test_cases/test_module/ --alluredir=./allure-results
    
    # 运行指定测试用例
-   pytest test_cases/test_module/test_file.py --alluredir=./allure-results
+   pytest src/test_cases/test_module/test_file.py --alluredir=./allure-results
    ```
 
 ### 3. 查看报告：
@@ -166,15 +167,15 @@ auto-web-test/
 
 ### 自动化进度报告[进度报告](https://vcn25s6jh1tk.feishu.cn/base/VRsxbSmHgaKD7jswAAlcPAOlnUx?from=from_copylink)
 
-![img.png](img.png)
+![img.png](docs/assets/img.png)
 
 ### 测试结果报告
 
-![img_1.png](img_1.png)
+![img_1.png](docs/assets/img_1.png)
 
 ### 异常接口超时记录[异常接口信息](https://vcn25s6jh1tk.feishu.cn/base/Bk4CbfXQ0adtvmsaSitcDoBrnyc?table=tbl0rIx1AqSP5Ns0&view=vewsx1D6PF)
 
-![img_2.png](img_2.png)
+![img_2.png](docs/assets/img_2.png)
 
 
 

@@ -1,4 +1,5 @@
 import json
+import os
 import yaml
 from typing import Dict, Optional, List, Any
 from pathlib import Path
@@ -11,7 +12,10 @@ class AuthData:
     """认证数据管理类"""
 
     def __init__(self, yaml_path: Optional[str] = None):
-        self.yaml = yaml_path or f"{settings.BASE_DIR}/data/test_users.yaml"
+        self.yaml = yaml_path or os.getenv(
+            "AUTH_USERS_FILE",
+            f"{settings.BASE_DIR}/config/auth/test_users.yaml",
+        )
         self._init_default_data()
         self._load_yaml_data()
         self._cache = {}

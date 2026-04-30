@@ -12,6 +12,7 @@ wheels/
 allure-results
 .venv
 .env
+.Auth/
 # Virtual environments
 test-results
 /.temp_files/

@@ -67,7 +67,7 @@ RUN apt-get update; \
     rm /etc/localtime; \
     dpkg-reconfigure -f noninteractive tzdata; \
     rm -rf /var/lib/apt/lists/*;
-COPY ../requirements/requirements.txt /root
+COPY requirements/requirements.txt /root/requirements.txt
 RUN pip3 install --no-cache-dir -r /root/requirements.txt \
     -i https://pypi.tuna.tsinghua.edu.cn/simple \
     --extra-index-url https://mirrors.aliyun.com/pypi/simple; \

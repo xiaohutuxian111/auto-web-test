@@ -5,7 +5,9 @@
 """
 
 import os
-from typing import Optional, Union, List
+import re
+from typing import Optional
+from urllib.parse import urlsplit
 
 
 def get_path(path: Optional[str] = None) -> str:
@@ -48,18 +50,24 @@ def get_path(path: Optional[str] = None) -> str:
 
 def get_sub_url(url: str) -> str:
     """
-    获取URL的子路径（待实现）
-    
-    Args:
-        url: 完整URL
-        
-    Returns:
-        str: 子路径
-        
-    TODO: 实现URL子路径提取逻辑
+    将 URL 转换为可用于目录名的稳定标识。
+
+    Example:
+        >>> get_sub_url("http://192.168.10.240:8060/a-front/")
+        '192.168.10.240_8060_a-front'
     """
-    # TODO: 实现URL子路径提取功能
-    raise NotImplementedError("get_sub_url 功能尚未实现")
+    if not url:
+        return "default"
+
+    parsed = urlsplit(url if "://" in url else f"http://{url}")
+    parts = [
+        parsed.hostname or "",
+        str(parsed.port or ""),
+        parsed.path.strip("/"),
+    ]
+    raw_name = "_".join(part for part in parts if part)
+    safe_name = re.sub(r"[^0-9A-Za-z._-]+", "_", raw_name).strip("._-")
+    return safe_name or "default"
 
 
 if __name__ == '__main__':

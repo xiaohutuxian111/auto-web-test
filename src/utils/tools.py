@@ -4,7 +4,6 @@
 该模块提供了各种通用工具函数，包括视频处理、图像处理、JSON解析等。
 """
 
-import io
 import json
 from collections import defaultdict
 from typing import Dict, List, Any, Optional
@@ -13,9 +12,9 @@ from jsonpath_ng.ext import parse
 from moviepy import VideoFileClip
 from PIL import Image
 
-import cv2
-from PIL import Image
 import io
+
+from src.utils.path_util import get_sub_url as _get_sub_url
 
 
 def select_users() -> List[Dict[str, Any]]:
@@ -149,19 +148,8 @@ def get_token(storage_state_json: Dict[str, Any]) -> Optional[str]:
 
 
 def get_sub_url(url: str) -> str:
-    """
-    获取URL的子路径（待实现）
-    
-    Args:
-        url: 完整URL
-        
-    Returns:
-        str: 子路径
-        
-    TODO: 实现URL子路径提取逻辑
-    """
-    # TODO: 实现URL子路径提取功能
-    raise NotImplementedError("get_sub_url 功能尚未实现")
+    """兼容旧导入路径，实际实现位于 src.utils.path_util。"""
+    return _get_sub_url(url)
 
 
 def parse_json_safely(json_str: str) -> Optional[Dict[str, Any]]:
